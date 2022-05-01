@@ -1,7 +1,10 @@
 import pandas as pd
-    
+import os
+
+
 # Load data
-melbourne_file_path = 'data/melb_data.csv'
+dirname = os.path.dirname(__file__)
+melbourne_file_path =  os.path.join(dirname, '../data/melb_data.csv')
 melbourne_data = pd.read_csv(melbourne_file_path) 
 # Filter rows with missing values
 melbourne_data = melbourne_data.dropna(axis=0)
@@ -26,3 +29,4 @@ forest_model = RandomForestRegressor(random_state=1)
 forest_model.fit(train_X, train_y)
 melb_preds = forest_model.predict(val_X)
 print(mean_absolute_error(val_y, melb_preds))
+print("hi")
